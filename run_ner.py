@@ -509,7 +509,7 @@ def main():
     data_collator = DataCollatorForTokenClassification(tokenizer, pad_to_multiple_of=8 if training_args.fp16 else None)
 
     # Metrics
-    metric = evaluate.load("/home/ldy/Misc/TransformerNER/utils/seqeval.py", cache_dir=model_args.cache_dir)
+    metric = evaluate.load("utils/seqeval.py", cache_dir=model_args.cache_dir)
 
     def compute_metrics(p):
         predictions, labels = p
@@ -604,7 +604,7 @@ def main():
         trainer.save_metrics("predict", metrics)
 
         # Save predictions
-        output_predictions_file = os.path.join(training_args.output_dir, "predictions.txt")
+        output_predictions_file = os.path.join(training_args.output_dir, "2021213661.txt")
         if trainer.is_world_process_zero():
             with open(output_predictions_file, "w") as writer:
                 for prediction in true_predictions:

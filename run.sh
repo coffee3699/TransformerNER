@@ -17,10 +17,10 @@ python3 run_ner.py \
   --per_device_train_batch_size 64 \
   --per_device_eval_batch_size 64 \
   --eval_strategy "epoch" \
+  --save_strategy "epoch" \
   --fp16 \
   --optim "adamw_torch" \
   --logging_steps 500 \
-  --save_steps 1000 \
   --num_train_epochs 5 \
   --learning_rate 5e-5 \
   --lr_scheduler_type "linear" \

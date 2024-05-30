@@ -1,0 +1,522 @@
+05/31/2024 01:16:43 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 2, distributed training: False, 16-bits training: True
+05/31/2024 01:16:43 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=2,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=True,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_steps=None,
+eval_strategy=epoch,
+evaluation_strategy=None,
+fp16=True,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=output/runs/May31_01-16-43_lab1,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=5.0,
+optim=adamw_torch,
+optim_args=None,
+optim_target_modules=None,
+output_dir=output,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=64,
+per_device_train_batch_size=64,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=output,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=1000,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Loading Dataset Infos from /home/ldy/.cache/huggingface/modules/datasets_modules/datasets/ner_dataset/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8
+05/31/2024 01:16:43 - INFO - datasets.info - Loading Dataset Infos from /home/ldy/.cache/huggingface/modules/datasets_modules/datasets/ner_dataset/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8
+Overwrite dataset info from restored data version if exists.
+05/31/2024 01:16:43 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8
+05/31/2024 01:16:43 - INFO - datasets.info - Loading Dataset info from /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8
+Found cached dataset ner_dataset (/home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8)
+05/31/2024 01:16:43 - INFO - datasets.builder - Found cached dataset ner_dataset (/home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8)
+Loading Dataset info from /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8
+05/31/2024 01:16:43 - INFO - datasets.info - Loading Dataset info from /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8
+[INFO|configuration_utils.py:731] 2024-05-31 01:16:43,906 >> loading configuration file /data/zzy/Models/bert-base-chinese/config.json
+[INFO|configuration_utils.py:796] 2024-05-31 01:16:43,908 >> Model config BertConfig {
+  "_name_or_path": "/data/zzy/Models/bert-base-chinese",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "directionality": "bidi",
+  "finetuning_task": "ner",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1",
+    "2": "LABEL_2",
+    "3": "LABEL_3",
+    "4": "LABEL_4",
+    "5": "LABEL_5",
+    "6": "LABEL_6",
+    "7": "LABEL_7",
+    "8": "LABEL_8"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1,
+    "LABEL_2": 2,
+    "LABEL_3": 3,
+    "LABEL_4": 4,
+    "LABEL_5": 5,
+    "LABEL_6": 6,
+    "LABEL_7": 7,
+    "LABEL_8": 8
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.41.1",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 21128
+}
+
+[INFO|configuration_utils.py:731] 2024-05-31 01:16:43,908 >> loading configuration file /data/zzy/Models/bert-base-chinese/config.json
+[INFO|configuration_utils.py:796] 2024-05-31 01:16:43,910 >> Model config BertConfig {
+  "_name_or_path": "/data/zzy/Models/bert-base-chinese",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.41.1",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 21128
+}
+
+[INFO|tokenization_utils_base.py:2106] 2024-05-31 01:16:43,910 >> loading file vocab.txt
+[INFO|tokenization_utils_base.py:2106] 2024-05-31 01:16:43,910 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2106] 2024-05-31 01:16:43,910 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2106] 2024-05-31 01:16:43,910 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2106] 2024-05-31 01:16:43,910 >> loading file tokenizer_config.json
+[INFO|configuration_utils.py:731] 2024-05-31 01:16:43,910 >> loading configuration file /data/zzy/Models/bert-base-chinese/config.json
+[INFO|configuration_utils.py:796] 2024-05-31 01:16:43,911 >> Model config BertConfig {
+  "_name_or_path": "/data/zzy/Models/bert-base-chinese",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.41.1",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 21128
+}
+
+[INFO|modeling_utils.py:3471] 2024-05-31 01:16:43,938 >> loading weights file /data/zzy/Models/bert-base-chinese/model.safetensors
+[INFO|modeling_utils.py:4270] 2024-05-31 01:16:43,994 >> Some weights of the model checkpoint at /data/zzy/Models/bert-base-chinese were not used when initializing BertForTokenClassification: ['bert.pooler.dense.bias', 'bert.pooler.dense.weight', 'cls.predictions.bias', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertForTokenClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForTokenClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+[WARNING|modeling_utils.py:4282] 2024-05-31 01:16:43,994 >> Some weights of BertForTokenClassification were not initialized from the model checkpoint at /data/zzy/Models/bert-base-chinese and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Loading cached processed dataset at /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8/cache-8a14a27489e38ce8.arrow
+05/31/2024 01:16:44 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8/cache-8a14a27489e38ce8.arrow
+Loading cached processed dataset at /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8/cache-4553350a75c773ca.arrow
+05/31/2024 01:16:44 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8/cache-4553350a75c773ca.arrow
+Loading cached processed dataset at /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8/cache-d1d4a1876a007976.arrow
+05/31/2024 01:16:44 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/ldy/.cache/huggingface/datasets/ner_dataset/default/0.0.0/c1a9fcde311c341b9da1d422f066a4e3f2ae8457d49a3f82cf39bba4a7fb51b8/cache-d1d4a1876a007976.arrow
+[INFO|trainer.py:641] 2024-05-31 01:16:45,126 >> Using auto half precision backend
+[INFO|trainer.py:804] 2024-05-31 01:16:45,202 >> The following columns in the training set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2078] 2024-05-31 01:16:45,205 >> ***** Running training *****
+[INFO|trainer.py:2079] 2024-05-31 01:16:45,205 >>   Num examples = 230,039
+[INFO|trainer.py:2080] 2024-05-31 01:16:45,205 >>   Num Epochs = 5
+[INFO|trainer.py:2081] 2024-05-31 01:16:45,205 >>   Instantaneous batch size per device = 64
+[INFO|trainer.py:2083] 2024-05-31 01:16:45,205 >>   Training with DataParallel so batch size has been adjusted to: 128
+[INFO|trainer.py:2084] 2024-05-31 01:16:45,205 >>   Total train batch size (w. parallel, distributed & accumulation) = 128
+[INFO|trainer.py:2085] 2024-05-31 01:16:45,205 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2086] 2024-05-31 01:16:45,205 >>   Total optimization steps = 8,990
+[INFO|trainer.py:2087] 2024-05-31 01:16:45,206 >>   Number of trainable parameters = 101,683,977
+  0%|                                                                                                                                          | 0/8990 [00:00<?, ?it/s]/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.0444, 'grad_norm': 13997.0849609375, 'learning_rate': 4.721913236929923e-05, 'epoch': 0.28}
+{'loss': 0.0165, 'grad_norm': 8867.9599609375, 'learning_rate': 4.4438264738598445e-05, 'epoch': 0.56}
+ 11%|█████████████▉                                                                                                               | 1000/8990 [18:51<2:25:38,  1.09s/it][INFO|trainer.py:3410] 2024-05-31 01:35:36,622 >> Saving model checkpoint to output/checkpoint-1000
+[INFO|configuration_utils.py:472] 2024-05-31 01:35:36,623 >> Configuration saved in output/checkpoint-1000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 01:35:37,078 >> Model weights saved in output/checkpoint-1000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 01:35:37,078 >> tokenizer config file saved in output/checkpoint-1000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 01:35:37,078 >> Special tokens file saved in output/checkpoint-1000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.0126, 'grad_norm': 9533.08203125, 'learning_rate': 4.165739710789767e-05, 'epoch': 0.83}
+ 20%|█████████████████████████                                                                                                    | 1798/8990 [33:33<1:50:27,  1.09it/s][INFO|trainer.py:804] 2024-05-31 01:50:18,977 >> The following columns in the evaluation set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 01:50:18,979 >> ***** Running Evaluation *****
+[INFO|trainer.py:3721] 2024-05-31 01:50:18,979 >>   Num examples = 29965
+[INFO|trainer.py:3724] 2024-05-31 01:50:18,979 >>   Batch size = 128
+
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_LOC seems not to be NE tag.35 [01:25<00:00,  2.41it/s]
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_LOC seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+{'eval_loss': 0.014805164188146591, 'eval_precision': 0.9521128503371898, 'eval_recall': 0.9631127021478997, 'eval_f1': 0.9575811881249726, 'eval_accuracy': 0.9957497958850094, 'eval_runtime': 117.0073, 'eval_samples_per_second': 256.095, 'eval_steps_per_second': 2.008, 'epoch': 1.0}
+{'loss': 0.0097, 'grad_norm': 7725.810546875, 'learning_rate': 3.887652947719689e-05, 'epoch': 1.11}
+ 22%|███████████████████████████▊                                                                                                 | 2000/8990 [39:17<2:08:55,  1.11s/it][INFO|trainer.py:3410] 2024-05-31 01:56:02,688 >> Saving model checkpoint to output/checkpoint-2000
+[INFO|configuration_utils.py:472] 2024-05-31 01:56:02,689 >> Configuration saved in output/checkpoint-2000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 01:56:03,091 >> Model weights saved in output/checkpoint-2000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 01:56:03,091 >> tokenizer config file saved in output/checkpoint-2000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 01:56:03,091 >> Special tokens file saved in output/checkpoint-2000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.0074, 'grad_norm': 9244.1298828125, 'learning_rate': 3.609566184649611e-05, 'epoch': 1.39}
+ 29%|████████████████████████████████████                                                                                         | 2596/8990 [50:32<2:10:03,  1.22s/it 29%|████████████████████████████████████                                                                                         | 2597/8990 [50:34<2:24:55,  1.36s/it 29%|███████████████████████████████████▊                                                                                        | 2598/8990 [50:35<2:13:41,  1.25s/it] 29{'loss': 0.0069, 'grad_norm': 19084.728515625, 'learning_rate': 3.331479421579533e-05, 'epoch': 1.67}
+ 33%|█████████████████████████████████████████▋                                                                                   | 3000/8990 [57:57<1:56:53,  1.17s/it][INFO|trainer.py:3410] 2024-05-31 02:14:42,687 >> Saving model checkpoint to output/checkpoint-3000
+[INFO|configuration_utils.py:472] 2024-05-31 02:14:42,688 >> Configuration saved in output/checkpoint-3000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 02:14:43,101 >> Model weights saved in output/checkpoint-3000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 02:14:43,102 >> tokenizer config file saved in output/checkpoint-3000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 02:14:43,102 >> Special tokens file saved in output/checkpoint-3000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.0064, 'grad_norm': 9492.685546875, 'learning_rate': 3.0533926585094554e-05, 'epoch': 1.95}
+ 40%|█████████████████████████████████████████████████▏                                                                         | 3596/8990 [1:09:16<1:31:14,  1.02s/it][INFO|trainer.py:804] 2024-05-31 02:26:01,859 >> The following columns in the evaluation set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 02:26:01,861 >> ***** Running Evaluation *****
+[INFO|trainer.py:3721] 2024-05-31 02:26:01,861 >>   Num examples = 29965
+[INFO|trainer.py:3724] 2024-05-31 02:26:01,861 >>   Batch size = 128
+
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_LOC seems not to be NE tag.35 [01:25<00:00,  2.42it/s]
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_LOC seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+{'eval_loss': 0.013287968002259731, 'eval_precision': 0.9606240435934759, 'eval_recall': 0.9664797476593401, 'eval_f1': 0.9635429990453669, 'eval_accuracy': 0.996405634140164, 'eval_runtime': 117.0717, 'eval_samples_per_second': 255.954, 'eval_steps_per_second': 2.007, 'epoch': 2.0}
+{'loss': 0.0045, 'grad_norm': 5396.04150390625, 'learning_rate': 2.7753058954393772e-05, 'epoch': 2.22}
+ 44%|██████████████████████████████████████████████████████▋                                                                    | 4000/8990 [1:18:50<1:30:26,  1.09s/it][INFO|trainer.py:3410] 2024-05-31 02:35:36,135 >> Saving model checkpoint to output/checkpoint-4000
+[INFO|configuration_utils.py:472] 2024-05-31 02:35:36,136 >> Configuration saved in output/checkpoint-4000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 02:35:36,540 >> Model weights saved in output/checkpoint-4000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 02:35:36,541 >> tokenizer config file saved in output/checkpoint-4000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 02:35:36,541 >> Special tokens file saved in output/checkpoint-4000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.004, 'grad_norm': 4554.5322265625, 'learning_rate': 2.4972191323692994e-05, 'epoch': 2.5}
+{'loss': 0.0036, 'grad_norm': 3349.834716796875, 'learning_rate': 2.2191323692992215e-05, 'epoch': 2.78}
+ 56%|████████████████████████████████████████████████████████████████████▍                                                      | 5000/8990 [1:37:32<1:06:27,  1.00it/s][INFO|trainer.py:3410] 2024-05-31 02:54:18,099 >> Saving model checkpoint to output/checkpoint-5000
+[INFO|configuration_utils.py:472] 2024-05-31 02:54:18,100 >> Configuration saved in output/checkpoint-5000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 02:54:18,518 >> Model weights saved in output/checkpoint-5000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 02:54:18,518 >> tokenizer config file saved in output/checkpoint-5000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 02:54:18,518 >> Special tokens file saved in output/checkpoint-5000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+ 60%|███████████████████████████████████████████████████████████████████████████                                                  | 5394/8990 [1:44:48<58:59,  1.02it/s][INFO|trainer.py:804] 2024-05-31 03:01:33,789 >> The following columns in the evaluation set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 03:01:33,790 >> ***** Running Evaluation *****
+[INFO|trainer.py:3721] 2024-05-31 03:01:33,791 >>   Num examples = 29965
+[INFO|trainer.py:3724] 2024-05-31 03:01:33,791 >>   Batch size = 128
+
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_LOC seems not to be NE tag.35 [01:25<00:00,  2.41it/s]
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_LOC seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+{'eval_loss': 0.014198029413819313, 'eval_precision': 0.9620405231348459, 'eval_recall': 0.9723001051419417, 'eval_f1': 0.9671431061530417, 'eval_accuracy': 0.9966742810256809, 'eval_runtime': 117.667, 'eval_samples_per_second': 254.659, 'eval_steps_per_second': 1.997, 'epoch': 3.0}
+{'loss': 0.0033, 'grad_norm': 11226.6728515625, 'learning_rate': 1.9410456062291436e-05, 'epoch': 3.06}
+{'loss': 0.0023, 'grad_norm': 10835.892578125, 'learning_rate': 1.6629588431590657e-05, 'epoch': 3.34}
+ 67%|███████████████████████████████████████████████████████████████████████████████████▍                                         | 6000/8990 [1:58:17<47:28,  1.05it/s][INFO|trainer.py:3410] 2024-05-31 03:15:02,434 >> Saving model checkpoint to output/checkpoint-6000
+[INFO|configuration_utils.py:472] 2024-05-31 03:15:02,434 >> Configuration saved in output/checkpoint-6000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 03:15:02,852 >> Model weights saved in output/checkpoint-6000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 03:15:02,853 >> tokenizer config file saved in output/checkpoint-6000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 03:15:02,853 >> Special tokens file saved in output/checkpoint-6000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.0021, 'grad_norm': 9611.861328125, 'learning_rate': 1.3848720800889879e-05, 'epoch': 3.62}
+{'loss': 0.0022, 'grad_norm': 8151.20703125, 'learning_rate': 1.10678531701891e-05, 'epoch': 3.89}
+ 78%|█████████████████████████████████████████████████████████████████████████████████████████████████▎                           | 7000/8990 [2:16:46<32:13,  1.03it/s][INFO|trainer.py:3410] 2024-05-31 03:33:31,505 >> Saving model checkpoint to output/checkpoint-7000
+[INFO|configuration_utils.py:472] 2024-05-31 03:33:31,506 >> Configuration saved in output/checkpoint-7000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 03:33:31,920 >> Model weights saved in output/checkpoint-7000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 03:33:31,920 >> tokenizer config file saved in output/checkpoint-7000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 03:33:31,921 >> Special tokens file saved in output/checkpoint-7000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+ 80%|████████████████████████████████████████████████████████████████████████████████████████████████████                         | 7192/8990 [2:20:22<33:45,  1.13s/it][INFO|trainer.py:804] 2024-05-31 03:37:07,675 >> The following columns in the evaluation set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 03:37:07,677 >> ***** Running Evaluation *****
+[INFO|trainer.py:3721] 2024-05-31 03:37:07,677 >>   Num examples = 29965
+[INFO|trainer.py:3724] 2024-05-31 03:37:07,677 >>   Batch size = 128
+
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_LOC seems not to be NE tag.35 [01:25<00:00,  2.41it/s]
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_LOC seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+{'eval_loss': 0.016179021447896957, 'eval_precision': 0.9641532603167909, 'eval_recall': 0.972950983828168, 'eval_f1': 0.9685321438138966, 'eval_accuracy': 0.9968090090571222, 'eval_runtime': 117.7907, 'eval_samples_per_second': 254.392, 'eval_steps_per_second': 1.995, 'epoch': 4.0}
+{'loss': 0.0017, 'grad_norm': 8779.3662109375, 'learning_rate': 8.286985539488321e-06, 'epoch': 4.17}
+{'loss': 0.0013, 'grad_norm': 4104.40185546875, 'learning_rate': 5.506117908787542e-06, 'epoch': 4.45}
+ 89%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████▏             | 8000/8990 [2:37:28<16:23,  1.01it/s][INFO|trainer.py:3410] 2024-05-31 03:54:13,561 >> Saving model checkpoint to output/checkpoint-8000
+[INFO|configuration_utils.py:472] 2024-05-31 03:54:13,562 >> Configuration saved in output/checkpoint-8000/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 03:54:13,961 >> Model weights saved in output/checkpoint-8000/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 03:54:13,961 >> tokenizer config file saved in output/checkpoint-8000/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 03:54:13,961 >> Special tokens file saved in output/checkpoint-8000/special_tokens_map.json
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+{'loss': 0.0013, 'grad_norm': 848.6287231445312, 'learning_rate': 2.7252502780867635e-06, 'epoch': 4.73}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 8990/8990 [2:56:03<00:00,  1.09s/it][INFO|trainer.py:804] 2024-05-31 04:12:48,690 >> The following columns in the evaluation set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 04:12:48,692 >> ***** Running Evaluation *****
+[INFO|trainer.py:3721] 2024-05-31 04:12:48,692 >>   Num examples = 29965
+[INFO|trainer.py:3724] 2024-05-31 04:12:48,692 >>   Batch size = 128
+
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_LOC seems not to be NE tag.35 [01:25<00:00,  2.40it/s]
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_LOC seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_T seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_PER seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: B_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+/home/ldy/.conda/envs/torch/lib/python3.10/site-packages/seqeval/metrics/sequence_labeling.py:171: UserWarning: I_ORG seems not to be NE tag.
+  warnings.warn('{} seems not to be NE tag.'.format(chunk))
+{'eval_loss': 0.018241053447127342, 'eval_precision': 0.9652217054263565, 'eval_recall': 0.9740775046312522, 'eval_f1': 0.9696293850495585, 'eval_accuracy': 0.9968802166653316, 'eval_runtime': 116.9861, 'eval_samples_per_second': 256.142, 'eval_steps_per_second': 2.009, 'epoch': 5.0}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 8990/8990 [2:58:00<00:00,  1.09s/it]
+[INFO|trainer.py:2329] 2024-05-31 04:14:45,705 >>
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+{'train_runtime': 10680.5142, 'train_samples_per_second': 107.691, 'train_steps_per_second': 0.842, 'train_loss': 0.007312082667504587, 'epoch': 5.0}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 8990/8990 [2:58:00<00:00,  1.19s/it]
+[INFO|trainer.py:3410] 2024-05-31 04:14:45,721 >> Saving model checkpoint to output
+[INFO|configuration_utils.py:472] 2024-05-31 04:14:45,722 >> Configuration saved in output/config.json
+[INFO|modeling_utils.py:2618] 2024-05-31 04:14:46,153 >> Model weights saved in output/model.safetensors
+[INFO|tokenization_utils_base.py:2513] 2024-05-31 04:14:46,154 >> tokenizer config file saved in output/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2522] 2024-05-31 04:14:46,154 >> Special tokens file saved in output/special_tokens_map.json
+***** train metrics *****
+  epoch                    =         5.0
+  total_flos               = 204323347GF
+  train_loss               =      0.0073
+  train_runtime            =  2:58:00.51
+  train_samples            =      230039
+  train_samples_per_second =     107.691
+  train_steps_per_second   =       0.842
+05/31/2024 04:14:46 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:804] 2024-05-31 04:14:46,159 >> The following columns in the evaluation set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 04:14:46,161 >> ***** Running Evaluation *****
+[INFO|trainer.py:3721] 2024-05-31 04:14:46,161 >>   Num examples = 29965
+[INFO|trainer.py:3724] 2024-05-31 04:14:46,161 >>   Batch size = 128
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 235/235 [01:56<00:00,  2.02it/s]
+***** eval metrics *****
+  epoch                   =        5.0
+  eval_accuracy           =     0.9969
+  eval_f1                 =     0.9696
+  eval_loss               =     0.0182
+  eval_precision          =     0.9652
+  eval_recall             =     0.9741
+  eval_runtime            = 0:01:56.56
+  eval_samples            =      29965
+  eval_samples_per_second =    257.067
+  eval_steps_per_second   =      2.016
+05/31/2024 04:16:42 - INFO - __main__ - *** Predict ***
+[INFO|trainer.py:804] 2024-05-31 04:16:42,750 >> The following columns in the test set don't have a corresponding argument in `BertForTokenClassification.forward` and have been ignored: id, tokens, ner_tags. If id, tokens, ner_tags are not expected by `BertForTokenClassification.forward`,  you can safely ignore this message.
+[INFO|trainer.py:3719] 2024-05-31 04:16:42,752 >> ***** Running Prediction *****
+[INFO|trainer.py:3721] 2024-05-31 04:16:42,752 >>   Num examples = 26264
+[INFO|trainer.py:3724] 2024-05-31 04:16:42,752 >>   Batch size = 128
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 206/206 [01:44<00:00,  1.97it/s]
+***** predict metrics *****
+  predict_accuracy           =     0.9966
+  predict_f1                 =      0.967
+  predict_loss               =     0.0195
+  predict_precision          =     0.9626
+  predict_recall             =     0.9715
+  predict_runtime            = 0:01:44.99
+  predict_samples_per_second =    250.153
+  predict_steps_per_second   =      1.962
