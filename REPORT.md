@@ -58,7 +58,7 @@
 >
 > 2. **计算资源**：从头训练一个 Transformer 模型需要大量的计算资源和时间。相比之下，使用预训练模型并进行微调能够显著减少计算开销，同时也能获得较好的性能。
 >
-> 3. **模型稳定性**：预训练模型已经过大量数据的训练，参数已经收敛并且稳定。如果强行进行随机初始化或更改为其他开源的词向量（如 GloVe），可能会导致模型训练不稳定，甚至出现异常行为。
+> 3. **模型稳定性**：预训练模型已经过大量数据的训练，参数已经收敛并且稳定。如果进行参数随机初始化，更改模型结构或更改为其他开源的词向量，可能会导致模型训练不稳定，甚至出现异常行为。
 >
 > #### 字向量初始化
 >
@@ -68,6 +68,7 @@
 >
 > 因此，使用 Transformer 进行命名实体识别（NER）任务的核心应该是寻找合适的、优秀的预训练模型，并在 NER 数据集上进行微调来获得预期的结果。通过微调，模型能够在保持预训练模型优势的基础上，进一步适应具体的 NER 任务，从而达到最佳的性能。
 >
+> 另外，由计算资源限制（训练一个epoch要一个多小时），在本次实验中无法同时训练多个模型，因此直接选用了NER效果最好的也是最通用的BERT模型。
 
 ### 训练算法及超参数
 
@@ -126,8 +127,8 @@ python3 run_ner.py \
 
 我们基本采用了来自 Hugging Face Transformers 库的[示例脚本](https://github.com/huggingface/transformers/tree/main/examples/pytorch/token-classification)，并针对本次任务进行了特定的修改。以下是训练一个命名实体识别（NER）模型的详细流程：
 
-1.  **设置随机种子以保证结果的可复现性**
-   
+1. **设置随机种子以保证结果的可复现性**
+
    为了确保实验结果的可复现性，我们在训练开始之前设置了随机种子。这样可以确保每次运行的结果一致，有利于调试和比较不同模型的性能。
 
 2. **加载并预处理训练集、验证集和测试集**
@@ -149,14 +150,14 @@ python3 run_ner.py \
    else:
        column_names = raw_datasets["validation"].column_names
        features = raw_datasets["validation"].features
-
+   
    if data_args.text_column_name is not None:
        text_column_name = data_args.text_column_name
    elif "tokens" in column_names:
        text_column_name = "tokens"
    else:
        text_column_name = column_names[0]
-
+   
    if data_args.label_column_name is not None:
        label_column_name = data_args.label_column_name
    elif f"{data_args.task_name}_tags" in column_names:
@@ -187,11 +188,11 @@ python3 run_ner.py \
 
    ```python
    metric = evaluate.load("utils/seqeval.py", cache_dir=model_args.cache_dir)
-
+   
    def compute_metrics(p):
        predictions, labels = p
        predictions = np.argmax(predictions, axis=2)
-
+   
        # Remove ignored index (special tokens)
        true_predictions = [
            [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
@@ -201,7 +202,7 @@ python3 run_ner.py \
            [label_list[l] for (p, l) in zip(prediction, label) if l != -100]
            for prediction, label in zip(predictions, labels)
        ]
-
+   
        results = metric.compute(predictions=true_predictions, references=true_labels)
        if data_args.return_entity_level_metrics:
            # Unpack nested dictionaries
@@ -242,7 +243,7 @@ python3 run_ner.py \
                load_from_cache_file=not data_args.overwrite_cache,
                desc="Running tokenizer on train dataset",
            )
-
+   
    if training_args.do_eval:
        if "validation" not in raw_datasets:
            raise ValueError("--do_eval requires a validation dataset")
@@ -294,10 +295,11 @@ python3 run_ner.py \
        trainer.log_metrics("train", metrics)
        trainer.save_metrics("train", metrics)
        trainer.save_state()
+   ```
 
 通过以上步骤，我们成功地训练了一个基于 Transformer 的命名实体识别模型，并对其进行了评估和测试。该模型能够有效地识别文本中的命名实体，为后续任务提供了可靠的基础。
 
-### c) 训练损失和发展集性能随时间变化的曲线
+## c) 训练损失和发展集性能随时间变化的曲线
 
 每一轮记录训练损失，同时在发展集上进行测试，获得其标注性能（准确率）。以下为训练过程中训练损失和发展集性能的变化情况：
 
@@ -306,18 +308,16 @@ python3 run_ner.py \
 
 通过观察曲线，我们选择在第 5 轮次时的模型进行测试，该轮次的训练损失最低，且在发展集上的表现最好。
 
-### d) 参考文献、网页和代码
+## d) 参考文献、网页和代码
 
 1. Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv preprint arXiv:1810.04805.
 2. Hugging Face Transformers Task Guides: https://huggingface.co/docs/transformers/tasks/token_classification
 3. Hugging Face Datasets: dataset loading script: https://huggingface.co/docs/datasets/main/en/dataset_script
 4. Hugging Face Transformers Example Scripts: https://github.com/huggingface/transformers/tree/main/examples/pytorch/token-classification
 
-
-
 ## 说明
 
-本次作业使用了大模型辅助，主要辅助了实验报告的编写（约60%是大模型生成内容，经过了细致的人工审核），而实验代码编写则没有使用大模型辅助。
+本次作业使用了大模型辅助，主要辅助了实验报告的编写（约60%是大模型生成内容，经过了细致的人工审核），而实验代码编写则很少（<10%）使用大模型辅助。
 
 本次实验我的主要工作为：
 
